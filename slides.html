@@ -1,0 +1,471 @@
+
+<!DOCTYPE html>
+
+<!--
+  Google HTML5 slide template
+
+  Authors: Luke Mahé (code)
+           Marcin Wichary (code and design)
+           
+           Dominic Mazzoni (browser compatibility)
+           Charles Chen (ChromeVox support)
+
+  URL: http://code.google.com/p/html5slides/
+-->
+
+<html>
+  <head>
+    <title>Intelligent Audio Systems</title>
+
+    <meta charset='utf-8'>
+    <script
+      src='http://html5slides.googlecode.com/svn/trunk/slides.js'></script>
+  </head>
+  
+  <style>
+    /* Your individual styles here, or just use inline styles if that’s
+       what you want. */
+    
+    b {
+      color:#000;
+    }
+    
+  </style>
+
+  <body style='display: none'>
+
+    <section class='slides layout-regular template-default'>
+      
+      <!-- Your slides (<article>s) go here. Delete or comment out the
+           slides below. -->
+
+      <article class="nobackground">
+        <h1>
+          Intelligent Audio Systems
+          <br>
+
+        </h1>
+        <p>
+          Jeremy Sawruk
+          <br>
+          January 8, 2013
+        </p>
+      </article>
+
+      <article class="nobackground">
+        <h2>
+          Music Information Retrieval
+        </h2>
+      </article>
+
+      <article class="nobackground">
+        <h3>Music Information Retrieval</h3>
+        <h4>Problem</h4>
+        <ul>
+          <li>There is more recorded music now than ever before, and this amount keeps growing.</li>
+          <li>Constant stream of new artists and new compositions</li>
+          <li>Several catalogs have 1 - 10 million audio tracks (~ 30 - 50 TB uncompressed, 3 - 5 TB compressed)</li>
+          <li>Tracks are frequently unlabeled or mis-labeled</li>
+          <li>How to search? Find structure and relationships? Recommend the song to play next? </li>
+        </ul>
+      </article>
+
+      <article class="nobackground">
+        <h3>Music Information Retrieval</h3>
+        <h4>Goals</h4>
+        <ul>
+          <li>Find similarity among audio tracks (group by artist, mood, genre)</li>
+          <li>Extract metadata from audio only</li>
+          <li>Song identification (i.e. Shazam)</li>
+          <li>Recommend music for purchasing, playlisting, and streaming radio</li>
+          <li>Extract high-level musical information for transcription, compostion, and remixing/DJing</li>
+          <li>Use techniques from DSP, Music Theory, Machine Learning, Acoustics, and Psychoacoustics</li>
+        </ul>
+      </article>
+
+      <article class="nobackground">
+        <h3>Music Information Retrieval</h3>
+        <h4>Examples</h4>
+        <ul>
+          <li>Playlisting and Recommendation - Pandora, Spotify</li>
+          <li>Identification - Shazam</li>
+          <li>Mood Identification - Hubu</li>
+          <li>Score Following - Tonara, Rock Prodigy</li>
+          <li>Remixing - Echo Nest Remix API</li>
+          <li>Harmonic Extraction - Chordify.net</li>
+        </ul>
+      </article>
+
+      <article class="nobackground">
+        <h3>Music Information Retrieval</h3>
+        <h4>Workflow</h4>
+        <ol style="float:left;">
+          <li>
+            Segmentation
+            <ul>
+              <li>Fixed Frames</li>
+              <li>Onset Detection</li>
+            </ul>
+          </li>
+          <li>
+            Feature Extraction
+            <ul>
+              <li>Temporal Features</li>
+              <li>Spectral Features</li>
+              <li>High-level features</li>
+            </ul>
+          </li>
+          <li>Classification</li>
+        </ol>
+        <img src="images/MIR-Workflow.png" alt="MIR Workflow" style="float:right;" />
+      </article>
+
+      <article class="nobackground">
+        <h2>
+          Fourier Transform
+        </h2>
+      </article>
+
+      <article class="nobackground">
+        <h3>
+          Fourier Transform
+        </h3>
+        <h4>Theory</h4>
+        <ul>
+          <li>Digital audio is usually stored as amplitude as a function of time</li>
+          <li>Music is usually described in terms of frequency (pitch, timbre)</li>
+          <li>Fourier Series: Any infinite periodic signal can be represented by an infinite sum of sines and cosines <small>(Fourier, 1807)</small></li>
+          <li>Each sine/cosine represents a different frequency, allowing us to extract frequency information from amplitude information</li>
+        </ul>
+      </article>
+
+      <article class="nobackground">
+        <h3>
+          Fourier Transform
+        </h3>
+        <h4>Discrete Fourier Transform</h4>
+        <ul>
+          <li>Input: Signal <b>x(t)</b></li>
+          <li>Output: Spectrum <b>X(f)</b></li>
+        </ul>
+        <img src="images/DiscreteFourierTransform.gif" alt="Discrete Fourier Transform" /><br />
+        [GRAPHIC: TWO UP: SQUARE WAVE AND SPECTRUM]
+      </article>
+
+      <article class="nobackground">
+        <h3>
+          Fourier Transform
+        </h3>
+        <h4>Practice: Short-Time Fourier Transform (STFT)</h4>
+        <ul>
+          <li>Real signals are not infinite in length</li>
+          <li>Musical signals have spectra that change over time</li>
+          <li>Solution: Use Fast Fourier Transform (FFT) on small portions of the signal</li>
+        </ul>
+      </article>
+
+      <article class="nobackground">
+        <h2>
+          Segmentation
+        </h2>
+      </article>
+
+      <article class="nobackground">
+        <h3>
+          Segmentation
+        </h3>
+        <ul>
+          <li>Fixed Frames</li>
+          <li>Onset Detection</li>
+        </ul>
+      </article>
+
+      <article class="nobackground">
+        <h3>
+          Segmentation
+        </h3>
+        <h4>Fixed Frames</h4>
+        <ul>
+          <li>Divide the data into fixed frames of constant length, typically a power of 2 (because of FFT)</li>
+          <li>Longer frames gives greater spectral resolution, but slower performance (1024 is a good compromise)</li>
+          <li>50% overlap between successive frames can increase temporal accuracy</li>
+          <li>Use with window functions (i.e. Hamming) to minimize spectral artifacts caused by discontinuities</li>
+      </ul>
+      </article>
+
+      <article class="nobackground">
+        <h3>
+          Segmentation
+        </h3>
+        <h4>Fixed Frames: Example</h4>
+        <img src="images/WindowingExample.png" alt="Windowing Example" style="width:800px; margin-top:-40px;" />
+      </article>
+
+      <article class="nobackground">
+        <h3>
+          Segmentation
+        </h3>
+        <h4>Onset Detection (Spectral Flux method)</h4>
+        <p>
+          One method to detect onsets is to use spectral flux. 
+        </p>
+        <p>
+          Spectral flux measures how quickly a spectrum changes. 
+        </p>
+        <p>
+          Spectral flux is locally maximized near onsets. 
+        </p>
+        <p>
+          This allows us to find onsets
+          by computing the spectral flux and then finding local maxima (peak picking). 
+        </p>
+        [EQUATION: SPECTRAL FLUX]<br />
+        [GRAPHS: DRUM LOOP 01, SPECTRAL FLUX, FIRST ONSET]
+      </article>
+
+      <article class="nobackground">
+        <h2>
+          Temporal Features
+        </h2>
+      </article>
+
+      <article class="nobackground">
+        <h3>
+          Temporal Features
+        </h3>
+        <h4>Zero Crossing Rate</h4>
+        <p>
+          Zero Crossing Rate (ZCR) is a measure of how many times the signal crosses the y axis. 
+        </p>
+        <p>
+          It is
+          a crude estimator of pitch and harmonic content.
+        </p>
+        <p>
+          A higher ZCR implies a higher pitch and/or 
+          more complex harmonic content.
+        </p>
+        <p>
+          Its main advantage is that it is fast to compute.
+        </p>
+        [EQUATION: ZCR]<br />
+        [GRAPH: SIGNAL WITH LOW ZCR, HIGH ZCR] 
+      </article>
+
+      <article class="nobackground">
+        <h2>
+          Spectral Features
+        </h2>
+      </article>
+
+      <article class="nobackground">
+        <h3>
+          Spectral Features
+        </h3>
+        <h4>Spectral Moments</h4>
+        <ul>
+          <li>Mean</li>
+          <li>Variance</li>
+          <li>Skewness</li>
+          <li>Kurtosis</li>
+        </ul>
+      </article>
+
+      <article class="nobackground">
+        <h3>
+          Spectral Features
+        </h3>
+        <h4>Spectral Moments - Mean</h4>
+        <img src="images/SpectralMean.gif" alt="Spectral Mean" /><br />
+        [GRAPHIC: SPECTRUM WITH MEAN HIGHLIGHTED]
+      </article>
+
+      <article class="nobackground">
+        <h3>
+          Spectral Features
+        </h3>
+        <h4>Spectral Moments - Variance</h4>
+        <img src="images/SpectralVariance.gif" alt="Spectral Variance" /><br />
+        [GRAPHIC: TWO UP: SPECTRUM WITH NARROW VARIANCE, SPECTRUM WITH WIDE VARIANCE]
+      </article>
+
+      <article class="nobackground">
+        <h3>
+          Spectral Features
+        </h3>
+        <h4>Spectral Moments - Skewness</h4>
+        [EQUATION: SPECTRAL SKEWNESS]
+        [GRAPHIC: TWO UP: SPECTRUM WITH LEFT SKEW, SPECTRUM WITH RIGHT SKEW]
+      </article>      
+
+      <article class="nobackground">
+        <h3>
+          Spectral Features
+        </h3>
+        <h4>Spectral Moments - Kurtosis</h4>
+        [EQUATION: SPECTRAL KURTOSIS]
+        [GRAPHIC: TWO UP: SPECTRUM WITH HIGH KURTOSIS, SPECTRUM WITH LOW KURTOSIS]
+      </article>
+
+      <article class="nobackground">
+        <h3>
+          Spectral Features
+        </h3>
+        <h4>Other Spectral Features</h4>
+        <ul>
+          <li>Centroid</li>
+          <li>Spread</li>
+          <li>Flatness</li>
+          <li>MFCCs</li>
+        </ul>
+      </article>
+
+      <article class="nobackground">
+        <h3>
+          Spectral Features
+        </h3>
+        <h4>Spectral Centroid</h4>
+        <p>
+          HOW IS THIS DIFFERENT FROM SPECTRAL MEAN?
+        </p>
+        [EQUATION: SPECTRAL CENTROID]
+        [GRAPHIC: TWO UP: SPECTRUM WITH HIGH CENTROID, SPECTRUM WITH LOW CENTROID]
+      </article>
+
+      <article class="nobackground">
+        <h3>
+          Spectral Features
+        </h3>
+        <h4>Spectral Spread</h4>
+        <p>
+          HOW IS THIS DIFFERENT FROM SPECTRAL VARIANCE?
+        </p>
+        [EQUATION: SPECTRAL SPREAD]
+        [GRAPHIC: TWO UP: SPECTRUM WITH WIDE SPREAD, SPECTRUM WITH NARROW SPREAD]
+      </article>
+
+      <article class="nobackground">
+        <h3>
+          Spectral Features
+        </h3>
+        <h4>Spectral Flatness</h4>
+        [EQUATION: SPECTRAL FLATNESS]
+        [GRAPHIC: TWO UP: SPECTRUM WITH HIGH FLATNESS, SPECTRUM WITH LOW FLATNESS]
+      </article>
+
+      <article class="nobackground">
+        <h3>
+          Spectral Features
+        </h3>
+        <h4>Mel Frequency Cepstral Coefficients (MFCCs)</h4>
+        <ul>
+          <li>Pitch perception is logarithmic, not linear</li>
+          <li>Mel-Frequency maps linear frequency space onto perceptual log space <small>(Stevens et al., 1937)</small></li>
+          <li>Cepstrum maps spectrum onto log space <small>(Bogert et al., 1963)</small></li>
+          <li>MFCCs provide a quasi-perceptual model of audio information</li>
+          <li>Frequently used in speech recognition, also performs well for musical tasks</li>
+        </ul>
+      </article>
+
+      <article class="nobackground">
+        <h2>
+          High Level Features
+        </h2>
+      </article>
+
+      <article class="nobackground">
+        <h3>
+          High Level Features
+        </h3>
+        <ul>
+          <li>Pitch</li>
+          <li>Chroma</li>
+          <li>Chord</li>
+        </ul>
+      </article>
+
+      <article class="nobackground">
+        <h3>
+          High Level Features
+        </h3>
+        <h4>High Level Features - Pitch (monophonic naive approach)</h4>
+        <ul>
+          <li>Pitch is a discrete mapping of frequency</li>
+          <li>Naive pitch estimation: Find the pitch of the frequency that has the most energy in the spectrum</li>
+          <li>This is not usually the case - perception of pitch is more subtle</li>
+          <li>Other approaches: autocorrelation, Yin algorithm, harmonic product spectrum</li>
+        </ul>
+        [EQUATION: MAPPING HERTZ TO MIDI #]
+      </article>
+
+      <article class="nobackground">
+        <h3>
+          High Level Features
+        </h3>
+        <h4>High Level Features - Chroma</h4>
+        <ul>
+          <li>Musicians describe a phenomena known as "octave equivalence"</li>
+          <li>If two pitches have frequencies that differ by a factor of two, then the two pitches have the same pitch class but have different octaves. Example: A3 (220 Hz) and A4 (440 Hz)</li>
+          <li>Pitch class: C, D, E, F#, Bb etc.</li>
+          <li>Chroma: Mapping of pitch information into modular pitch class space (Z12)</li>
+        </ul>
+        [GRAPHIC: OCTAVE EQUIVALENCE USING NOTATION]<br />
+        [GRAPHIC: NOTATION WITH PITCH CLASS NAMES]<br />
+        [GRAPHIC: PITCH CLASS NAMES IN Z12]<br />
+      </article>
+
+      <article class="nobackground">
+        <h3>
+          High Level Features
+        </h3>
+        <h4>High Level Features - Chord (naive chord lookup)</h4>
+        <ul>
+          <li>Simplified approach to chord estimation: Ignore voicings and only use chroma</li>
+          <li>Extract chroma vector from a spectrum</li>
+          <li>Compare with dictionary of idealized chord chroma vectors (e.g. C major = [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0])</li>
+          <li>Compute distance using cosine similarity metric</li>
+          <li>Classify chord using dictionary entry with highest match (most similar)</li>
+        </ul>
+      </article>
+
+      <article class="nobackground">
+        <h2>
+          Building a Classifier
+        </h2>
+      </article>
+
+      <article class="nobackground">
+        <h3>
+          Building a Classifier
+        </h3>
+        <h4>Genre Classifier: Theory</h4>
+        <ul>
+          <li>Different genres of music use different instruments or groups of instruments</li>
+          <li>Example: Baroque chamber music frequently uses piano and small string ensemble (i.e. quartet), while rock music uses distorted guitar, bass, and drums</li>
+          <li>Different instruments have different spectra</li>
+          <li>Therefore, different genres should have different spectra</li>
+        </ul>
+      </article>
+
+      <article class="nobackground">
+        <h3>
+          Building a Classifier
+        </h3>
+        <h4>Genre Classifier: Classical vs. Rock</h4>
+        <ul>
+          <li>Extract MFCCs from labeled training data (e.g. Franz Schubert = "classical", Foo Fighters = "rock")</li>
+          <li>Learn from MFCCs using a supervised machine learning algorithm</li>
+          <li>On unseen data, extract MFCCs and classify using trained classifier</li>
+        </ul>
+      </article>
+
+      <article class="nobackground">
+        <h2>
+          Resources
+        </h2>
+      </article>
+
+    </section>
+
+  </body>
+</html>
