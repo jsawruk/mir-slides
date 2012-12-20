@@ -265,7 +265,6 @@
         <p>
           Its main advantage is that it is fast to compute.
         </p>
-        [EQUATION: ZCR]<br />
         [GRAPH: SIGNAL WITH LOW ZCR, HIGH ZCR] 
       </article>
 
@@ -275,6 +274,7 @@
         </h2>
       </article>
 
+      <!--
       <article class="nobackground">
         <h3>
           Spectral Features
@@ -327,12 +327,12 @@
         <p><img src="images/Kurtosis.gif" alt="Kurtosis" /></p>
         [GRAPHIC: TWO UP: SPECTRUM WITH HIGH KURTOSIS, SPECTRUM WITH LOW KURTOSIS]
       </article>
+      -->
 
       <article class="nobackground">
         <h3>
           Spectral Features
         </h3>
-        <h4>Other Spectral Features</h4>
         <ul>
           <li>Centroid</li>
           <li>Spread</li>
@@ -346,6 +346,7 @@
           Spectral Features
         </h3>
         <h4>Spectral Centroid</h4>
+        <p>One of the MPEG-7 Audio Low Level Descriptors: AudioSpectrumCentroid</p>
         <p>
           HOW IS THIS DIFFERENT FROM SPECTRAL MEAN?
         </p>
@@ -358,6 +359,7 @@
           Spectral Features
         </h3>
         <h4>Spectral Spread</h4>
+        <p>One of the MPEG-7 Audio Low Level Descriptors: AudioSpectrumSpread</p>
         <p>
           HOW IS THIS DIFFERENT FROM SPECTRAL VARIANCE?
         </p>
@@ -370,6 +372,7 @@
           Spectral Features
         </h3>
         <h4>Spectral Flatness</h4>
+        <p>One of the MPEG-7 Audio Low Level Descriptors: AudioSpectrumFlatness</p>
         [EQUATION: SPECTRAL FLATNESS]
         [GRAPHIC: TWO UP: SPECTRUM WITH HIGH FLATNESS, SPECTRUM WITH LOW FLATNESS]
       </article>
@@ -409,37 +412,43 @@
         <h3>
           High Level Features
         </h3>
-        <h4>High Level Features - Pitch (monophonic naive approach)</h4>
+        <h4>Pitch (monophonic naive approach)</h4>
         <ul>
           <li>Pitch is a discrete mapping of frequency</li>
           <li>Naive pitch estimation: Find the pitch of the frequency that has the most energy in the spectrum</li>
           <li>This is not usually the case - perception of pitch is more subtle</li>
           <li>Other approaches: autocorrelation, Yin algorithm, harmonic product spectrum</li>
         </ul>
-        [EQUATION: MAPPING HERTZ TO MIDI #]
+        <img src="images/FrequencyToMidi.gif" alt="Frequency to MIDI Pitch" />
       </article>
 
       <article class="nobackground">
         <h3>
           High Level Features
         </h3>
-        <h4>High Level Features - Chroma</h4>
+        <h4>Chroma</h4>
         <ul>
           <li>Musicians describe a phenomena known as "octave equivalence"</li>
           <li>If two pitches have frequencies that differ by a factor of two, then the two pitches have the same pitch class but have different octaves. Example: A3 (220 Hz) and A4 (440 Hz)</li>
           <li>Pitch class: C, D, E, F#, Bb etc.</li>
           <li>Chroma: Mapping of pitch information into modular pitch class space (Z12)</li>
         </ul>
-        [GRAPHIC: OCTAVE EQUIVALENCE USING NOTATION]<br />
-        [GRAPHIC: NOTATION WITH PITCH CLASS NAMES]<br />
-        [GRAPHIC: PITCH CLASS NAMES IN Z12]<br />
       </article>
 
       <article class="nobackground">
         <h3>
           High Level Features
         </h3>
-        <h4>High Level Features - Chord (naive chord lookup)</h4>
+        <h4>Chroma</h4>
+        <img src="images/helix3.gif" alt="Pitch Spiral" style="height:400px;" /><br />
+        [GRAPHIC: OCTAVE EQUIVALENCE USING NOTATION]<br />
+      </article>
+
+      <article class="nobackground">
+        <h3>
+          High Level Features
+        </h3>
+        <h4>Chord (naive chord lookup)</h4>
         <ul>
           <li>Simplified approach to chord estimation: Ignore voicings and only use chroma</li>
           <li>Extract chroma vector from a spectrum</li>
@@ -447,6 +456,14 @@
           <li>Compute distance using cosine similarity metric</li>
           <li>Classify chord using dictionary entry with highest match (most similar)</li>
         </ul>
+      </article>
+
+      <article class="nobackground">
+        <h3>
+          High Level Features
+        </h3>
+        <h4>High Level Features - Chord (naive chord lookup)</h4>
+        <img src="images/ChordPlots.png" alt="Chord Plots" style="width:500px; margin-top:-40px;" />
       </article>
 
       <article class="nobackground">
