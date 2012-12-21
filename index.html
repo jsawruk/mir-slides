@@ -265,7 +265,14 @@
         <p>
           Its main advantage is that it is fast to compute.
         </p>
-        [GRAPH: SIGNAL WITH LOW ZCR, HIGH ZCR] 
+      </article>
+
+      <article class="nobackground">
+        <h3>
+          Temporal Features
+        </h3>
+        <h4>Zero Crossing Rate</h4>
+        <img src="images/zcr.png" alt="Zero Cross Rate example" style="width:700px; margin-top:-30px;" />
       </article>
 
       <article class="nobackground">
@@ -346,10 +353,11 @@
           Spectral Features
         </h3>
         <h4>Spectral Centroid</h4>
-        <p>One of the MPEG-7 Audio Low Level Descriptors: AudioSpectrumCentroid</p>
-        <p>
-          HOW IS THIS DIFFERENT FROM SPECTRAL MEAN?
-        </p>
+        <ul>
+          <li>One of the MPEG-7 Audio Low Level Descriptors: AudioSpectrumCentroid</li>
+          <li>Weighted spectral average ("center of mass")</li>
+          <li>Related to pitch and brightness</li>
+        </ul>
         [EQUATION: SPECTRAL CENTROID]
         [GRAPHIC: TWO UP: SPECTRUM WITH HIGH CENTROID, SPECTRUM WITH LOW CENTROID]
       </article>
@@ -359,10 +367,11 @@
           Spectral Features
         </h3>
         <h4>Spectral Spread</h4>
-        <p>One of the MPEG-7 Audio Low Level Descriptors: AudioSpectrumSpread</p>
-        <p>
-          HOW IS THIS DIFFERENT FROM SPECTRAL VARIANCE?
-        </p>
+        <ul>
+          <li>One of the MPEG-7 Audio Low Level Descriptors: AudioSpectrumSpread</li>
+          <li>Measure of variance around spectral centroid</li>
+          <li>Related to harmonic content and noisiness</li>
+        </ul>
         [EQUATION: SPECTRAL SPREAD]
         [GRAPHIC: TWO UP: SPECTRUM WITH WIDE SPREAD, SPECTRUM WITH NARROW SPREAD]
       </article>
@@ -372,7 +381,10 @@
           Spectral Features
         </h3>
         <h4>Spectral Flatness</h4>
-        <p>One of the MPEG-7 Audio Low Level Descriptors: AudioSpectrumFlatness</p>
+        <ul>
+          <li>One of the MPEG-7 Audio Low Level Descriptors: AudioSpectrumFlatness</li>
+          <li>Measures how "tonal" a signal is (as opposed to noise)</li>
+        </ul>
         [EQUATION: SPECTRAL FLATNESS]
         [GRAPHIC: TWO UP: SPECTRUM WITH HIGH FLATNESS, SPECTRUM WITH LOW FLATNESS]
       </article>
@@ -479,7 +491,7 @@
         <h4>Genre Classifier: Theory</h4>
         <ul>
           <li>Different genres of music use different instruments or groups of instruments</li>
-          <li>Example: Baroque chamber music frequently uses piano and small string ensemble (i.e. quartet), while rock music uses distorted guitar, bass, and drums</li>
+          <li>Example: Classical chamber music frequently uses piano and small string ensemble (i.e. quartet), while rock music uses distorted guitar, bass, and drums</li>
           <li>Different instruments have different spectra</li>
           <li>Therefore, different genres should have different spectra</li>
         </ul>
@@ -501,6 +513,38 @@
         <h2>
           Resources
         </h2>
+      </article>
+
+       <article class="nobackground">
+        <h3>
+          Resources
+        </h3>
+        <h4>Software</h4>
+        <ul>
+          <li>EchoNest API - developer.echonest.com</li>
+          <li>EchoNest Remix API - echonest.github.com/remix</li>
+          <li>Sonic Visualiser - www.sonicvisualiser.org</li>
+          <li>Marsyas - marsyas.info</li>
+          <li>PyMIR - github.com/jsawruk/pymir</li>
+        </ul>
+      </article>
+
+      <article class="nobackground">
+        <h3>
+          Resources
+        </h3>
+        <h4>Books</h4>
+        <ul>
+          <li>Signal Processing Methods for Music Transcription - Anssi Klapuri et al. (2006)</li>
+          <li>Audio Content Analysis - Alexander Lerch (2012)</li>
+        </ul>
+        <h4>Blogs</h4>
+        <ul>
+          <li>MusicMachinery.com - Paul Lamere's blog</li>
+        </ul>
+        <p>
+          Special Thanks to Jay LeBoeuf and Steve Tjoa of iZotope for technical consultation.
+        </p>
       </article>
 
     </section>
