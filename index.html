@@ -228,7 +228,7 @@
         </p>
         <p style="margin-top:30px;">
           <img src="images/SpectralFlux.gif" alt="Spectral Flux" /><br />
-          N = sampleRate / 2
+          <img src="images/HalfWaveRectifier.gif" alt="Half-Wave Rectifier" /><br />
         </p>
       </article>
 
@@ -281,61 +281,6 @@
         </h2>
       </article>
 
-      <!--
-      <article class="nobackground">
-        <h3>
-          Spectral Features
-        </h3>
-        <h4>Spectral Moments</h4>
-        <ul>
-          <li>Mean</li>
-          <li>Variance</li>
-          <li>Skewness</li>
-          <li>Kurtosis</li>
-        </ul>
-      </article>
-
-      <article class="nobackground">
-        <h3>
-          Spectral Features
-        </h3>
-        <h4>Spectral Moments - Mean</h4>
-        <img src="images/SpectralMean.gif" alt="Spectral Mean" /><br />
-        [GRAPHIC: SPECTRUM WITH MEAN HIGHLIGHTED]
-      </article>
-
-      <article class="nobackground">
-        <h3>
-          Spectral Features
-        </h3>
-        <h4>Spectral Moments - Variance</h4>
-        <img src="images/SpectralVariance.gif" alt="Spectral Variance" /><br />
-        [GRAPHIC: TWO UP: SPECTRUM WITH NARROW VARIANCE, SPECTRUM WITH WIDE VARIANCE]
-      </article>
-
-      <article class="nobackground">
-        <h3>
-          Spectral Features
-        </h3>
-        <h4>Spectral Moments - Skewness</h4>
-        <p><img src="images/m2.gif" alt="m2" /></p>
-        <p><img src="images/m3.gif" alt="m3" /></p>
-        <p><img src="images/Skewness.gif" alt="Skewness" /></p>
-        [GRAPHIC: TWO UP: SPECTRUM WITH LEFT SKEW, SPECTRUM WITH RIGHT SKEW]
-      </article>      
-
-      <article class="nobackground">
-        <h3>
-          Spectral Features
-        </h3>
-        <h4>Spectral Moments - Kurtosis</h4>
-        <p><img src="images/m2.gif" alt="m2" /></p>
-        <p><img src="images/m4.gif" alt="m4" /></p>
-        <p><img src="images/Kurtosis.gif" alt="Kurtosis" /></p>
-        [GRAPHIC: TWO UP: SPECTRUM WITH HIGH KURTOSIS, SPECTRUM WITH LOW KURTOSIS]
-      </article>
-      -->
-
       <article class="nobackground">
         <h3>
           Spectral Features
@@ -354,12 +299,12 @@
         </h3>
         <h4>Spectral Centroid</h4>
         <ul>
-          <li>One of the MPEG-7 Audio Low Level Descriptors: AudioSpectrumCentroid</li>
+          <li>One of the MPEG-7 Audio Low Level Descriptors: <b>AudioSpectrumCentroid</b></li>
           <li>Weighted spectral average ("center of mass")</li>
           <li>Related to pitch and brightness</li>
         </ul>
-        [EQUATION: SPECTRAL CENTROID]
-        [GRAPHIC: TWO UP: SPECTRUM WITH HIGH CENTROID, SPECTRUM WITH LOW CENTROID]
+        <br />
+        <img src="images/SpectralCentroid.gif" alt="Spectral Centroid" /><br />
       </article>
 
       <article class="nobackground">
@@ -368,12 +313,12 @@
         </h3>
         <h4>Spectral Spread</h4>
         <ul>
-          <li>One of the MPEG-7 Audio Low Level Descriptors: AudioSpectrumSpread</li>
+          <li>One of the MPEG-7 Audio Low Level Descriptors: <b>AudioSpectrumSpread</b></li>
           <li>Measure of variance around spectral centroid</li>
           <li>Related to harmonic content and noisiness</li>
         </ul>
-        [EQUATION: SPECTRAL SPREAD]
-        [GRAPHIC: TWO UP: SPECTRUM WITH WIDE SPREAD, SPECTRUM WITH NARROW SPREAD]
+        <br />
+        <img src="images/SpectralSpread.gif" alt="Spectral Spread" />
       </article>
 
       <article class="nobackground">
@@ -382,11 +327,18 @@
         </h3>
         <h4>Spectral Flatness</h4>
         <ul>
-          <li>One of the MPEG-7 Audio Low Level Descriptors: AudioSpectrumFlatness</li>
+          <li>One of the MPEG-7 Audio Low Level Descriptors: <b>AudioSpectrumFlatness</b></li>
           <li>Measures how "tonal" a signal is (as opposed to noise)</li>
         </ul>
-        [EQUATION: SPECTRAL FLATNESS]
-        [GRAPHIC: TWO UP: SPECTRUM WITH HIGH FLATNESS, SPECTRUM WITH LOW FLATNESS]
+        <br />
+        <img src="images/SpectralFlatness.gif" alt="Spectral Flatness" />
+      </article>
+
+      <article class="nobackground">
+        <h3>
+          Spectral Features
+        </h3>
+        <img src="images/SpectralCentroidExample.png" alt="Spectral Centroid example" style="width:750px;" />
       </article>
 
       <article class="nobackground">
@@ -452,8 +404,8 @@
           High Level Features
         </h3>
         <h4>Chroma</h4>
-        <img src="images/helix3.gif" alt="Pitch Spiral" style="height:400px;" /><br />
-        [GRAPHIC: OCTAVE EQUIVALENCE USING NOTATION]<br />
+        <img src="images/helix3.gif" alt="Pitch Spiral" style="height:400px; margin-top:-40px;" /><br />
+        <img src="images/OctaveEquivalence.png" alt="Octave Equivalence" style="width:800px;" />
       </article>
 
       <article class="nobackground">
@@ -536,6 +488,7 @@
         <h4>Books</h4>
         <ul>
           <li>Signal Processing Methods for Music Transcription - Anssi Klapuri et al. (2006)</li>
+          <li>Music and Probability - David Temperley (2010)</li>
           <li>Audio Content Analysis - Alexander Lerch (2012)</li>
         </ul>
         <h4>Blogs</h4>
